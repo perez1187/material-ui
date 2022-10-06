@@ -44,7 +44,7 @@ function Navbar() {
 
   return (
     <AppBar
-        position='static' //it can be stick
+        position='sticky' //it can be stick
     >
         {/* instead of toolbar we use Styledtoolbar that we overwrite toolbar */}
         <StyledToolbar>

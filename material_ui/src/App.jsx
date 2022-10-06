@@ -4,28 +4,41 @@ import './App.css'
 import Button from '@mui/material/Button';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Typography from '@mui/material/Typography';
-import { Box, styled, Stack } from '@mui/material';
+import { Box,createTheme, styled, Stack } from '@mui/material';
 import Sidebar from './components/Sidebar';
 import Feed from './components/Feed';
 import Rightbar from './components/Rightbar';
 import Navbar from './components/Navbar';
+import Add from './components/Add';
+import { ThemeProvider } from '@emotion/react';
 
 
 function App () {
-  return (
-    <Box>
-      <Navbar/>
-      <Stack 
-        direction="row"
-        spacing={2}
-        justifyContent="space-between"
-      >
-        <Sidebar/>
-        <Feed/>
-        <Rightbar/>
-      </Stack>
 
-    </Box>
+  const [mode, setMode] = useState("light");
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+  return (
+    <ThemeProvider theme={darkTheme}> 
+      <Box bgcolor={"background.default"}>
+        <Navbar/>
+        <Stack 
+          direction="row"
+          spacing={2}
+          justifyContent="space-between"
+        >
+          <Sidebar setMode={setMode} mode={mode}/>
+          <Feed/>
+          <Rightbar/>
+        </Stack>
+        <Add/>
+
+      </Box>
+    </ThemeProvider>
   )
 }
 
